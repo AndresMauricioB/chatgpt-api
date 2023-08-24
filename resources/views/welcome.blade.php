@@ -79,7 +79,7 @@
                         // Itera a través de los chats y haz algo con ellos
                         response.chats.forEach(function(chat) {
                             // O mostrarlos en tu página HTML
-                            $("#result-chat").append('<p onclick="showMessage(' + chat.id + ')" >Chat: ' + chat.id + '</p>');
+                            $("#result-chat").append('<p onclick="showMessage(' + chat.id+ ')" >Chat: ' + chat.id + '</p>');
 
                         });
                     } else {
@@ -148,7 +148,8 @@
 
          // Mostrar info Chat especifico
          
-            function showMessage(id) {
+            function showMessage(id, e) {
+                console.log(e);
             $.ajax({
                 url: "http://127.0.0.1:8000/chat/"+id+"/message/show",
                 method: "POST",
