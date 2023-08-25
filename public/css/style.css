@@ -3,7 +3,7 @@ body{
 }
 .section-chat{
     display: grid;
-    grid-template-columns: 20% 80%;
+    grid-template-columns: 15% 85%;
     min-height: 100vh;
     background-color: aliceblue;
     ;
@@ -15,8 +15,15 @@ body{
     font-size: 1.6vw;
 }
 .input-send{
-    position: absolute;
-    bottom: 100px;
+    display: flex;
+    justify-content: center;
+    align-items: stretch;
+   
+}
+.interation-msg{
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
 }
 .interation-msg .content-msg{
     display: flex;

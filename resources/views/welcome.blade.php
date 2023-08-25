@@ -51,7 +51,7 @@
                     </div>    
                     <div class="input-send">
                         <input id="promptInput" type="text">
-                        <button id="sendMessage" class="btn-send">Send</button>
+                        <button onclick="sendMessage(id)" id="sendMessage" class="btn-send">Send</button>
                     </div>
                 </div>
             </div>                     
@@ -172,6 +172,10 @@
          // Mostrar info Chat especifico
          
             function showMessage(id, boton) {
+
+                document.getElementById('sendMessage').setAttribute('onclick', 'sendMessage(' + id + ')');
+
+
                 // Remover la clase 'active-btn-chat' de todos los botones
                 $('.boton').removeClass('active-btn-chat');
 
