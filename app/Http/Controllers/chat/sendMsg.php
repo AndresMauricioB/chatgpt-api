@@ -20,7 +20,7 @@ class sendMsg extends Controller
 
         $messageHistory = $chat->messages()->get()->toArray();
 
-        $chatGpt = new Client("k-7T7Zk5LayKleO2TzcsgGT3BlbkFJRmTQPVi9SaaK79lPsL2U", "gpt-3.5-turbo", "la clase de arquitectura en ingenieria es en la sala A este semestre");
+        $chatGpt = new Client("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", "gpt-3.5-turbo", "la clase de arquitectura en ingenieria es en la sala A este semestre");
         $answer = $chatGpt->getAnswer($messageHistory);
 
         $answerMsg = new message();

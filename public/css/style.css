@@ -52,7 +52,7 @@ body{
     background-color: #003B70;
     color: #fff;
     padding: 0.5vw;
-    font-size: 1.2vw;
+    font-size: 1vw;
     border-radius: 10px;
 }
 .content-msg{
@@ -60,10 +60,38 @@ body{
     overflow-y: scroll;
 }
 #newchat{
-    background-color: #ababab;
-    padding: 0.8vw 1.6vw;
+    width: 100%;
+    border: 1px solid #fff;
+    padding: 0.6vw 1vw;
     border-radius: 10px;
+    font-size: 1vw;
+}
+#newchat:hover{
+    background-color: #05559b;
+    color: #fff;
+    border: 1px solid #fff;
+    transition: all 0.5s;
 }
 .active-chat{
     background-color: #ababab;
+}
+#result-chat>p{
+    display: flex;
+    justify-content: space-between;
+    background-color: #00427b;
+    padding: 0.6vw 1vw;
+    margin: 0.4vw 0;
+    border-radius: 10px;
+    font-size: 1vw;
+}
+#result-chat>p:hover{
+    background-color: #0863b3;
+    transition: all 0.5s;
+}
+
+.active-btn-chat{
+    background-color: #0863b3 !important; 
+}
+#result-chat>p:active{
+    background-color: #0863b3; 
 }

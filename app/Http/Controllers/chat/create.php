@@ -36,4 +36,13 @@ class create extends Controller
             "menssages" => $messages,
         ]);
     }
+
+    public function delete(chat $chat){
+            $chat->messages()->delete();
+            $chat->delete();
+            
+        return response()->json([
+            "success" => true,
+        ]);
+    }
 }

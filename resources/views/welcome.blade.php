@@ -38,29 +38,23 @@
             
 
             <div class="section-chat">
-                <div id="result-chat" class="list-chat">
-                    <button id="newchat">New Chat</button>
-                   
-                    
+                <div  class="list-chat">
+                    <button onclick="createChat();" id="newchat">New Chat</button>
+                    <div id="result-chat">
+
+                    </div>
+                      
                 </div>
                 <div class="interation-msg">
                     <div id="result" class="content-msg">
-                     
-                       
-                       
+                                   
                     </div>    
                     <div class="input-send">
                         <input id="promptInput" type="text">
                         <button id="sendMessage" class="btn-send">Send</button>
                     </div>
                 </div>
-
-
-            </div>
-
-           
-            
-                                
+            </div>                     
             
         </div>
     </body>
@@ -69,7 +63,12 @@
     <script>
          // Listar los Chats
          $(document).ready(function() {
-            // Código que se ejecuta cuando la página web se carga completamente
+            showMessage(1, null);
+            indexChats();  
+        });
+
+        //Listar chats
+        function indexChats() {
             $.ajax({
                 url: "http://127.0.0.1:8000/chat/index",
                 method: "GET",
@@ -79,7 +78,7 @@
                         // Itera a través de los chats y haz algo con ellos
                         response.chats.forEach(function(chat) {
                             // O mostrarlos en tu página HTML
-                            $("#result-chat").append('<p onclick="showMessage(' + chat.id+ ')" >Chat: ' + chat.id + '</p>');
+                            $("#result-chat").append('<p class="boton" onclick="showMessage(' + chat.id+ ', this)" >Chat: ' + chat.id + '<i onclick="deleteChat(' + chat.id+')" class="fa-solid fa-trash"></i></p>');
 
                         });
                     } else {
@@ -89,40 +88,64 @@
                 error: function(xhr, status, error) {
                     console.error(error); // Registrar errores en la consola
                 }
-            });         
-        });
+            });      
+
+        }
+
         // Crear el Chat
-        $(document).ready(function() {
-            $("#newchat").on("click", function() {
+        function createChat() {
                 $.ajax({
                     url: "http://127.0.0.1:8000/chat/create",
                     method: "POST",
                     success: function(response) {
                         $("#result").html(response); // Display the response in the "result" div
+                        $("#result-chat").html(" "); 
+                        indexChats();
                        
                     },
                     error: function(xhr, status, error) {
                         console.error(error); // Log any errors to the console
                     }
                 });
+                
+        };
+       
+
+        // Eliminar Chat
+        function deleteChat(id) {
+            $.ajax({
+                url: "http://127.0.0.1:8000/chat/"+id+"/message/delete",
+                method: "DELETE",
+                success: function(response) {
+                    $("#result-chat").html(" "); 
+                    indexChats();   
+                },
+                error: function(xhr, status, error) {
+                    console.error(error); // Log any errors to the console
+                }
             });
-        });
+        }
+
+
+
         // Enviar mensaje
-            function sendMessage() {
+            function sendMessage(id) {
                 var promptText = $("#promptInput").val();
                 $("#result").append('<div class="msg2"><i class="fa-solid fa-user-tie"></i>' +
                     promptText + '</div>');
                 // Vaciar el campo de entrada
                 $("#promptInput").val("");
                 $.ajax({
-                url: "http://127.0.0.1:8000/chat/2/message/send",
+                url: "http://127.0.0.1:8000/chat/"+id+"/message/send",
                 method: "POST",
                 data: {
                     prompt: promptText
                 },
                 success: function(response) {
                    
-                    $("#result").html(response); // Display the response in the "result" div
+                    $("#result").append('<div class="msg1"><i class="fa-solid fa-user-tie"></i>' +
+                    response.answer + '</div>');
+                   
                 },
                 error: function(xhr, status, error) {
                     console.error(error); // Log any errors to the console
@@ -148,8 +171,13 @@
 
          // Mostrar info Chat especifico
          
-            function showMessage(id, e) {
-                console.log(e);
+            function showMessage(id, boton) {
+                // Remover la clase 'active-btn-chat' de todos los botones
+                $('.boton').removeClass('active-btn-chat');
+
+                // Agregar la clase 'active-btn-chat' al botón seleccionado
+                $(boton).addClass('active-btn-chat');
+                
             $.ajax({
                 url: "http://127.0.0.1:8000/chat/"+id+"/message/show",
                 method: "POST",
@@ -162,15 +190,14 @@
                             // O mostrarlos en tu página HTML
                           
                             if(menssage.role == "user"){
-        
                                 $("#result").append('<div class="msg1"><i class="fa-solid fa-comment-dots"></i>' +
-                                 menssage.content + '</div>');
+                                menssage.content + '</div>');
                             }
                             if(menssage.role == "assistant"){
-        
                                 $("#result").append('<div class="msg2">' +
                                 menssage.content + '<i class="fa-solid fa-user-tie"></i></div>');
                             }
+                           
 
                         });
                     } else {
