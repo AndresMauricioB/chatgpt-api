@@ -23,3 +23,13 @@ Route::post('/chat/{chat}/message/show', [\App\Http\Controllers\chat\create::cla
 Route::delete('/chat/{chat}/message/delete', [\App\Http\Controllers\chat\create::class, 'delete']);
 
 Route::post('/chat/{chat}/message/send', [\App\Http\Controllers\chat\sendMsg::class, 'send']);
+
+Route::middleware([
+    'auth:sanctum',
+    config('jetstream.auth_session'),
+    'verified',
+])->group(function () {
+    Route::get('/dashboard', function () {
+        return view('dashboard');
+    })->name('dashboard');
+});
