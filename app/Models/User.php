@@ -19,7 +19,8 @@ class User extends Authenticatable
     use TwoFactorAuthenticatable;
 
 
-    
+  
+
     protected $attributes = [
         'rol' => 0, 
     ];
@@ -33,6 +34,8 @@ class User extends Authenticatable
         'name',
         'email',
         'password',
+        'google_id',
+        'rol',
     ];
 
     /**
