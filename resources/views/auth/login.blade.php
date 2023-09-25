@@ -44,5 +44,10 @@
                 </x-button>
             </div>
         </form>
+        <a href="/google-auth/redirect" style="display: flex;
+    gap: 10px;
+    justify-content: center;
+    align-items: center;" class="py-2 my-1 btn btn-primary "><i class="fa-brands fa-google"></i> Login with Google</a>
+    
     </x-authentication-card>
 </x-guest-layout>

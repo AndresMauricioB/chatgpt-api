@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\GmailController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -16,6 +17,10 @@ use Illuminate\Support\Facades\Route;
 Route::get('/', function () {
     return view('welcome');
 });
+
+// Login Google
+Route::get('/google-auth/redirect', [GmailController::class, 'googleRedirect']);
+Route::get('/google-auth/callback', [GmailController::class, 'googleCallback']);
 
 Route::post('/chat/create', [\App\Http\Controllers\chat\create::class, 'create']);
 Route::get('/chat/index', [\App\Http\Controllers\chat\create::class, 'listar']);

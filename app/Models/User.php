@@ -18,6 +18,12 @@ class User extends Authenticatable
     use Notifiable;
     use TwoFactorAuthenticatable;
 
+
+    
+    protected $attributes = [
+        'rol' => 0, 
+    ];
+
     /**
      * The attributes that are mass assignable.
      *
