@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\GmailController;
+use App\Http\Controllers\WebScrapingController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -38,3 +39,7 @@ Route::middleware([
         return view('dashboard');
     })->name('dashboard');
 });
+
+
+// Web scraping
+Route::get('/web-scraping', [WebScrapingController::class, 'webScraping']);
