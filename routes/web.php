@@ -15,13 +15,14 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
+Route::get('/', function () { return view('welcome');
 });
 
 // Login Google
 Route::get('/google-auth/redirect', [GmailController::class, 'googleRedirect']);
 Route::get('/google-auth/callback', [GmailController::class, 'googleCallback']);
+
+
 
 Route::post('/chat/create', [\App\Http\Controllers\chat\create::class, 'create']);
 Route::get('/chat/index', [\App\Http\Controllers\chat\create::class, 'listar']);
@@ -29,6 +30,7 @@ Route::post('/chat/{chat}/message/show', [\App\Http\Controllers\chat\create::cla
 Route::delete('/chat/{chat}/message/delete', [\App\Http\Controllers\chat\create::class, 'delete']);
 
 Route::post('/chat/{chat}/message/send', [\App\Http\Controllers\chat\sendMsg::class, 'send']);
+
 
 Route::middleware([
     'auth:sanctum',
@@ -40,6 +42,8 @@ Route::middleware([
     })->name('dashboard');
 });
 
+Route::get('/chat', function () { return view('chat');
+})->name('chat')->middleware('admin');
 
 // Web scraping
-Route::get('/web-scraping', [WebScrapingController::class, 'webScraping']);
+Route::get('/web-scraping', [WebScrapingController::class, 'webScrapingAll']);

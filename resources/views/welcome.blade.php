@@ -42,7 +42,7 @@
         justify-content: center;
         font-size: 60px;
         color: #fff;">
-            <h1>Universidad de Caldas</h1>
+            <h1 class="title-u">Universidad de Caldas</h1>
         </div>
 
     </body>

@@ -102,3 +102,7 @@ body{
 #result-chat>p:active{
     background-color: #0863b3; 
 }
+.title-u{
+    color: #ffffff;
+    text-shadow: 10px 5px 5px rgb(88, 88, 88);
+}

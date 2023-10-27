@@ -17,7 +17,9 @@
         <!-- Styles -->
         @livewireStyles
     </head>
-    <body>
+    <body style="background-image: url('{{ asset('media/programas-especiales.png') }}'); background-size: cover;
+    background-repeat: no-repeat;
+    background-attachment: fixed;">
         <div class="font-sans text-gray-900 antialiased">
             {{ $slot }}
         </div>
