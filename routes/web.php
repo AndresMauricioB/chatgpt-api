@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\AuthController;
 use App\Http\Controllers\GmailController;
 use App\Http\Controllers\WebScrapingController;
 use Illuminate\Support\Facades\Route;
@@ -15,8 +16,17 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
+
+
 Route::get('/', function () { return view('welcome');
 });
+
+
+//API ADMIN AUH
+Route::post('/api/v1/auth/login', [AuthController::class, 'login']);
+Route::get('/api/v1/auth/check', [AuthController::class, 'check']);
+
+
 
 // Login Google
 Route::get('/google-auth/redirect', [GmailController::class, 'googleRedirect']);
@@ -28,22 +38,16 @@ Route::post('/chat/create', [\App\Http\Controllers\chat\create::class, 'create']
 Route::get('/chat/index', [\App\Http\Controllers\chat\create::class, 'listar']);
 Route::post('/chat/{chat}/message/show', [\App\Http\Controllers\chat\create::class, 'show']);
 Route::delete('/chat/{chat}/message/delete', [\App\Http\Controllers\chat\create::class, 'delete']);
-
 Route::post('/chat/{chat}/message/send', [\App\Http\Controllers\chat\sendMsg::class, 'send']);
 
+Route::get('/user', [\App\Http\Controllers\chat\create::class, 'user']);
 
-Route::middleware([
-    'auth:sanctum',
-    config('jetstream.auth_session'),
-    'verified',
-])->group(function () {
-    Route::get('/dashboard', function () {
-        return view('dashboard');
-    })->name('dashboard');
+Route::middleware([ 'auth:sanctum', config('jetstream.auth_session'),'verified',])->group(function () {
+    Route::get('/dashboard', function () {return view('dashboard'); })->name('dashboard');
+    Route::get('/chat', function () { return view('chat');})->name('chat')->middleware('admin');
 });
 
-Route::get('/chat', function () { return view('chat');
-})->name('chat')->middleware('admin');
+
 
 // Web scraping
 Route::get('/web-scraping', [WebScrapingController::class, 'webScrapingAll']);

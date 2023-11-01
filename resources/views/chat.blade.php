@@ -1,3 +1,5 @@
+<x-app-layout>
+    
 <!DOCTYPE html>
 <html lang="{{ str_replace('_', '-', app()->getLocale()) }}">
     <head>
@@ -21,21 +23,6 @@
     </head>
     <body class="antialiased">
         <div>
-            @if (Route::has('login'))
-                <div class="sm:fixed sm:top-0 sm:right-0 p-6 text-right z-10">
-                    @auth
-                        <a href="{{ url('/dashboard') }}" class="font-semibold text-gray-600 hover:text-gray-900 focus:outline focus:outline-2 focus:rounded-sm focus:outline-red-500">Dashboard</a>
-                    @else
-                        <a href="{{ route('login') }}" class="font-semibold text-gray-600 hover:text-gray-900 focus:outline focus:outline-2 focus:rounded-sm focus:outline-red-500">Log in</a>
-
-                        @if (Route::has('register'))
-                            <a href="{{ route('register') }}" class="ml-4 font-semibold text-gray-600 hover:text-gray-900 focus:outline focus:outline-2 focus:rounded-sm focus:outline-red-500">Register</a>
-                        @endif
-                    @endauth
-                </div>
-            @endif
-
-            
 
             <div class="section-chat">
                 <div  class="list-chat">
@@ -61,10 +48,13 @@
 
 
     <script>
+       
          // Listar los Chats
          $(document).ready(function() {
+           
             showMessage(1, null); 
-            indexChats();  
+            indexChats(); 
+           
         });
 
         //Listar chats
@@ -94,20 +84,24 @@
 
         // Crear el Chat
         function createChat() {
-                $.ajax({
-                    url: "http://127.0.0.1:8000/chat/create",
-                    method: "POST",
-                    success: function(response) {
-                        $("#result").html(response); // Display the response in the "result" div
-                        $("#result-chat").html(" "); 
-                        indexChats();
-                       
-                    },
-                    error: function(xhr, status, error) {
-                        console.error(error); // Log any errors to the console
-                    }
-                });
-                
+            $.ajax({
+                url: "http://127.0.0.1:8000/chat/create",
+                method: "POST",
+                dataType: "json",
+                contentType: 'application/json',
+                xhrFields: {
+                    withCredentials: true // Esta opción permite enviar las cookies
+                },
+
+                success: function(response) {
+                    $("#result").html(response); 
+                    $("#result-chat").html(" "); 
+                    indexChats();      
+                },
+                error: function(xhr, status, error) {
+                    console.error(error); 
+                }
+            });        
         };
        
 
@@ -213,10 +207,8 @@
                 }
             });
             }      
-      
-
-
 
     </script>
 
 </html>
+</x-app-layout>

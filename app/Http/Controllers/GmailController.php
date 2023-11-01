@@ -12,6 +12,10 @@ class GmailController extends Controller
  public function googleRedirect()
  {
      return Socialite::driver('google')->redirect();
+    //return response()->json([
+     //   "success" => true,
+     //   "ruta" => Socialite::driver('google')->redirect(),
+   // ]);
  }
  
  public function googleCallback()

@@ -18,7 +18,9 @@ class User extends Authenticatable
     use Notifiable;
     use TwoFactorAuthenticatable;
 
-
+    function chats() {
+        return $this->hasMany(chat::class)->orderBy("created_at", "asc");
+    }
   
 
     protected $attributes = [

@@ -4,7 +4,7 @@ body{
 .section-chat{
     display: grid;
     grid-template-columns: 15% 85%;
-    min-height: 100vh;
+    min-height: 88vh;
     background-color: aliceblue;
     ;
 }
