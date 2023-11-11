@@ -95,22 +95,6 @@
         });
     }
 
-    // Capturar el clic en el botón
-    $("#sendMessage").on("click", function() {
-        sendMessage();
-    });
-
-    // Capturar el evento "keypress" en el campo de entrada
-    $("#promptInput").keypress(function(event) {
-        // Verificar si la tecla presionada es "Enter" (código 13)
-        if (event.which === 13) {
-            sendMessage();
-            event.preventDefault(); // Evitar el comportamiento predeterminado del Enter en el campo de entrada
-        }
-    });
-
-
-
     // Mostrar info Chat especifico
 
     function showMessage(id, boton) {
