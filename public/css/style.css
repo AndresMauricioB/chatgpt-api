@@ -1,3 +1,10 @@
+:root {
+    --bg-color-caldasu: #003B70;
+    --bg-color-opacity: rgba(33, 47, 61, 0.7);
+    --txt-color-gray: #D6D5DC;
+    --txt-color-white: #FDFEFE;
+}
+
 body{
     background-color: rgb(221, 221, 221);
 }
@@ -9,7 +16,7 @@ body{
     ;
 }
 .list-chat{
-    background-color: #003B70;
+    background-color: var(--bg-color-caldasu);
     color: #fff;
     padding: 2vw;
     font-size: 1.6vw;
@@ -18,7 +25,7 @@ body{
     display: flex;
     justify-content: center;
     align-items: stretch;
-   
+
 }
 .interation-msg{
     display: flex;
@@ -43,12 +50,12 @@ body{
     border-radius: 10px;
     color: #fff;
     padding: 1vw;
-    background-color: #003B70;
+    background-color: var(--bg-color-caldasu);
 }
 
 .input-send input{
     width: 70vw;
-    color: #003B70;
+    color: var(--bg-color-caldasu);
     background-color: #807f7f87;
     padding: 0.5vw;
     font-size: 1.2vw;
@@ -56,7 +63,7 @@ body{
 
 }
 .btn-send{
-    background-color: #003B70;
+    background-color: var(--bg-color-caldasu);
     color: #fff;
     padding: 0.5vw;
     font-size: 1vw;
@@ -97,12 +104,46 @@ body{
 }
 
 .active-btn-chat{
-    background-color: #0863b3 !important; 
+    background-color: #0863b3 !important;
 }
 #result-chat>p:active{
-    background-color: #0863b3; 
+    background-color: #0863b3;
 }
 .title-u{
     color: #ffffff;
     text-shadow: 10px 5px 5px rgb(88, 88, 88);
+}
+
+.bg-img {
+    background: url('http://localhost/chatgpt-api/public/media/och-ucaldas.jpg');
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+}
+
+.layer>div {
+    background-color: var(--bg-color-opacity);
+}
+
+.txt-white {
+    color: var(--txt-color-white);
+}
+
+.txt-gray {
+    color: var(--txt-color-gray);
+}
+
+.bg-blue {
+    background-color: var(--bg-color-caldasu);
+}
+
+.white-hover-effect:hover {
+    color: var(--txt-color-white)
+}
+
+.center-items {
+    display: flex;
+    gap: 10px;
+    justify-content: center;
+    align-items: center;
 }

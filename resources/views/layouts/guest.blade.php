@@ -16,12 +16,14 @@
 
         <!-- Styles -->
         @livewireStyles
+
+        <link rel="stylesheet" href="{{ asset('css/style.css') }}">
     </head>
-    <body style="background-image: url('{{ asset('media/programas-especiales.png') }}'); background-size: cover;
-    background-repeat: no-repeat;
-    background-attachment: fixed;">
-        <div class="font-sans text-gray-900 antialiased">
-            {{ $slot }}
+    <body>
+        <div class="font-sans text-gray-900 antialiased bg-img">
+            <div class="layer">
+                {{ $slot }}
+            </div>
         </div>
 
         @livewireScripts
