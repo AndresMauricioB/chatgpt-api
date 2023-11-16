@@ -23,26 +23,22 @@
     </head>
     <body class="antialiased">
         <div>
-
             <div class="section-chat">
                 <div  class="list-chat">
                     <button onclick="createChat();" id="newchat">New Chat</button>
                     <div id="result-chat">
-
-                    </div>
-                      
+                    </div>     
                 </div>
                 <div class="interation-msg">
-                    <div id="result" class="content-msg">
-                                   
+                    <div id="result" class="content-msg">               
                     </div>    
                     <div class="input-send">
                         <input id="promptInput" type="text">
                         <button onclick="sendMessage(id)" id="sendMessage" class="btn-send">Send</button>
                     </div>
+                    
                 </div>
             </div>                     
-            
         </div>
     </body>
 
@@ -146,20 +142,6 @@
                 }
                 });
             }
-
-            // Capturar el clic en el botón
-            $("#sendMessage").on("click", function() {
-                sendMessage();
-            });
-
-            // Capturar el evento "keypress" en el campo de entrada
-            $("#promptInput").keypress(function(event) {
-                // Verificar si la tecla presionada es "Enter" (código 13)
-                if (event.which === 13) {
-                sendMessage();
-                event.preventDefault(); // Evitar el comportamiento predeterminado del Enter en el campo de entrada
-                }
-            });
    
 
 
@@ -206,7 +188,7 @@
                     console.error(error); // Registrar errores en la consola
                 }
             });
-            }      
+            }     
 
     </script>
 

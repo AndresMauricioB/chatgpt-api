@@ -21,11 +21,12 @@ class User extends Authenticatable
     function chats() {
         return $this->hasMany(chat::class)->orderBy("created_at", "asc");
     }
-  
 
-    protected $attributes = [
-        'rol' => 0, 
-    ];
+    public function paypalPayments()
+    {
+        return $this->hasMany(PaypalPayment::class);
+    }
+  
 
     /**
      * The attributes that are mass assignable.

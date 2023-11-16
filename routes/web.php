@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\GmailController;
+use App\Http\Controllers\PaymentController;
 use App\Http\Controllers\WebScrapingController;
 use Illuminate\Support\Facades\Route;
 
@@ -15,17 +16,20 @@ use Illuminate\Support\Facades\Route;
 | be assigned to the "web" middleware group. Make something great!
 |
 */
+//API ADMIN AUH
+//Route::post('/api/v1/auth/login', [AuthController::class, 'login']);
+//Route::get('/api/v1/auth/check', [AuthController::class, 'check']);
+
+#https://www.youtube.com/watch?v=k0FSJ8Vxiww
+// Paypal
+Route::get('/paypal/pay', [PaymentController::class, 'payWithPayPal']);
+Route::get('/paypal/status', [PaymentController::class, 'payPalStatus']);
+
 
 
 
 Route::get('/', function () { return view('welcome');
 });
-
-
-//API ADMIN AUH
-Route::post('/api/v1/auth/login', [AuthController::class, 'login']);
-Route::get('/api/v1/auth/check', [AuthController::class, 'check']);
-
 
 
 // Login Google
