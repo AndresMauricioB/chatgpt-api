@@ -121,8 +121,23 @@ body{
     background-attachment: fixed;
 }
 
+.bg-img-2 {
+    background: url('http://localhost/chatgpt-api/public/media/programas-especiales.png');
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+}
+
+
 .layer>div {
     background-color: var(--bg-color-opacity);
+}
+
+.layer-home {
+    background-color: var(--bg-color-opacity);
+    background-size: cover;
+    height: 88.6vh;
+    padding-top: 30px;
 }
 
 .txt-white {
@@ -146,4 +161,14 @@ body{
     gap: 10px;
     justify-content: center;
     align-items: center;
+}
+
+.hero-styles {
+    background-color: rgba(33, 47, 61, 0.9);
+    border-radius: 20px;
+    border: 3px solid var(--bg-color-caldasu);
+    color: var(--txt-color-gray);
+    margin: 20px auto 0px auto;
+    padding: 25px;
+    width: 30%;
 }
