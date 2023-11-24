@@ -43,11 +43,7 @@
         font-size: 60px;
         color: #fff;">
             <h1 class="title-u">Universidad de Caldas</h1>
-            @if(session('status'))
-                <div class="alert alert-danger">
-                    {{ session('status') }}
-                </div>
-            @endif
+           
         </div>
 
     </body>

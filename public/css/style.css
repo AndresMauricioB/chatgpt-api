@@ -133,8 +133,8 @@ body{
     color: var(--txt-color-gray);
 }
 
-.bg-blue {
-    background-color: var(--bg-color-caldasu);
+.bg-per > .bg-white {
+    background-color: var(--bg-color-caldasu) !important;
 }
 
 .white-hover-effect:hover {

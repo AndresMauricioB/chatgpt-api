@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\PaypalPayment;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Config;
 use PayPal\Api\Amount;
 use PayPal\Api\Payer;
@@ -39,12 +40,12 @@ class PaymentController extends Controller
         $payer->setPaymentMethod('paypal');
 
         $amount = new Amount();
-        $amount->setTotal('1.22');
+        $amount->setTotal('3.20');
         $amount->setCurrency('USD');
 
         $transaction = new Transaction();
         $transaction->setAmount($amount);
-        $transaction->setDescription('Prueba de pago ....');
+        $transaction->setDescription('Plan Chat UCaldas');
         
         $callbackUrl = url('/paypal/status');
 
@@ -76,7 +77,7 @@ class PaymentController extends Controller
         // No existe alguna variable
         if (!$paymentId || !$payerId || !$token) {
             $status = 'Lo sentimos! El pago a través de PayPal no se pudo realizar.';
-            return redirect('/paypal/failed')->with(compact('status'));
+            return redirect('/dashboard')->with(compact('status'));
         }
 
         
@@ -114,11 +115,30 @@ class PaymentController extends Controller
             ]);
             $paymentRecord->save();
         
-            return redirect('/')->with(compact('status'));
+            return redirect('/dashboard')->with(compact('status'));
         }
 
         $status = 'Lo sentimos! El pago a través de PayPal no se pudo realizar...';
-        return redirect('/')->with(compact('status'));
+        return redirect('/dashboard')->with(compact('status'));
+    }
+
+
+    // Validar Plan de cada usuario
+    public function pagos(Request $request) {
+       
+        if (Auth::check()) {
+            $user = auth()->user();
+            $pagos = $user->paypalPayments()->get();
+            return response()->json([
+                "success" => true,
+                "pagos" => $pagos,
+            ]);
+        } else {
+            return response()->json([
+                "success" => false,
+                "message" => "User is not authenticated.",
+            ], 401); // Código de estado 401 indica no autorizado
+        }
     }
     
 }

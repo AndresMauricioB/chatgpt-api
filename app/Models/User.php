@@ -22,9 +22,9 @@ class User extends Authenticatable
         return $this->hasMany(chat::class)->orderBy("created_at", "asc");
     }
 
-    public function paypalPayments()
+    function paypalPayments()
     {
-        return $this->hasMany(PaypalPayment::class);
+        return $this->hasMany(PaypalPayment::class)->orderBy("created_at", "asc");
     }
   
 
