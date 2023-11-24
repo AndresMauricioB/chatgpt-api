@@ -38,6 +38,7 @@
             @endif
         </div>
 
+
         <div class="layer-home">
             <img
                 alt="Logo Universidad de Caldas"
@@ -51,6 +52,7 @@
                 simplemente tengas preguntas generales, UniBot está listo para brindarte información precisa y
                 actualizada.
             </p>
+
         </div>
 
     </body>
