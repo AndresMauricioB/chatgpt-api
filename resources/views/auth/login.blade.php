@@ -12,7 +12,7 @@
             </div>
         @endif
 
-        <form method="POST" action="{{ route('login') }}">
+        <form class="bg-color-blue" method="POST" action="{{ route('login') }}">
             @csrf
 
             <div>
@@ -43,11 +43,11 @@
                     <a href="/">Regresar</a>
                 </button>
                 <x-button class="ml-4">
-                    {{ __('Valifar') }}
+                    {{ __('Validar') }}
                 </x-button>
             </div>
         </form>
-        <div class="txt-white center-items mt-2">
+        <div class="txt-white-p center-items mt-2">
             <a href="{{ route('register') }}" class="txt-white text-sm">
                 Registrarme
             </a>

@@ -26,3 +26,16 @@
     font-weight: 500;
     padding: 1%;
 }
+.pagos-header{
+    background-color: #e08201;
+    color: #fff;
+    font-weight: 600;
+    display: flex;
+    justify-content: space-around;
+    
+}
+.pagos-body{
+    background-color: #dfdfdf;
+    display: flex;
+    justify-content: space-around;
+}

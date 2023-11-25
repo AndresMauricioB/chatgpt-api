@@ -123,6 +123,8 @@ class PaymentController extends Controller
     }
 
 
+    
+
     // Validar Plan de cada usuario
     public function pagos(Request $request) {
        

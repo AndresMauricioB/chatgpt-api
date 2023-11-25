@@ -60,6 +60,7 @@
             method: "DELETE",
             success: function(response) {
                 $("#result-chat").html(" ");
+                showMessage(1, null);
                 indexChats();
             },
             error: function(xhr, status, error) {

@@ -4,6 +4,7 @@ namespace App\Http\Controllers\chat;
 
 use App\Http\Controllers\chatGPT\Client;
 use App\Http\Controllers\Controller;
+use App\Models\BlogUcaldas;
 use App\Models\chat;
 use App\Models\message;
 use Illuminate\Http\Request;
@@ -20,7 +21,17 @@ class sendMsg extends Controller
 
         $messageHistory = $chat->messages()->get()->toArray();
 
-        $chatGpt = new Client("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", "gpt-3.5-turbo", "la clase de arquitectura en ingenieria es en la sala A este semestre");
+        
+        $blogs = BlogUcaldas::all();
+        $AllContent = '';
+        foreach ($blogs as $blog) {
+            $AllContent .= $blog->content;
+        }
+
+
+
+
+        $chatGpt = new Client("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", "gpt-3.5-turbo", $AllContent );
         $answer = $chatGpt->getAnswer($messageHistory);
 
         $answerMsg = new message();
