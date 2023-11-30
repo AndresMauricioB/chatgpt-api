@@ -28,9 +28,6 @@ class sendMsg extends Controller
             $AllContent .= $blog->content;
         }
 
-
-
-
         $chatGpt = new Client("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", "gpt-3.5-turbo", $AllContent );
         $answer = $chatGpt->getAnswer($messageHistory);
 

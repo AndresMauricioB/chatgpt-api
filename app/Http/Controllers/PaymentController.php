@@ -69,7 +69,6 @@ class PaymentController extends Controller
 
     public function payPalStatus(Request $request)
     {
-        
         $paymentId = $request->input('paymentId');
         $payerId = $request->input('PayerID');
         $token = $request->input('token');
@@ -80,9 +79,7 @@ class PaymentController extends Controller
             return redirect('/dashboard')->with(compact('status'));
         }
 
-        
         $payment = Payment::get($paymentId, $this->apiContext);
-        
         $execution = new PaymentExecution();
         $execution->setPayerId($payerId);
 
@@ -102,7 +99,6 @@ class PaymentController extends Controller
             $user->rol = 2;
             $user->save();
 
-
              // Obtener la fecha de vencimiento (por ejemplo, 10 días después de hoy)
             $expirationDate = now()->addDays(5);
 
@@ -114,7 +110,6 @@ class PaymentController extends Controller
                 'expiration_date' => $expirationDate,
             ]);
             $paymentRecord->save();
-        
             return redirect('/dashboard')->with(compact('status'));
         }
 
@@ -127,7 +122,6 @@ class PaymentController extends Controller
 
     // Validar Plan de cada usuario
     public function pagos(Request $request) {
-       
         if (Auth::check()) {
             $user = auth()->user();
             $pagos = $user->paypalPayments()->get();
@@ -142,5 +136,4 @@ class PaymentController extends Controller
             ], 401); // Código de estado 401 indica no autorizado
         }
     }
-    
 }

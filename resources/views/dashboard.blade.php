@@ -1,10 +1,15 @@
 <x-app-layout >
-  
-
-   <div>
+    <div>
     <div class="container-dash">
         <div>
-            <p class="msg-dash">¡Descubre un mundo de conocimiento personalizado con nuestra suscripción de chat exclusiva de la Universidad de Cladas! Con acceso directo a expertos en cada campo, obtendrás respuestas instantáneas a tus preguntas, tutorías personalizadas y una experiencia educativa única. ¡Invierte en tu aprendizaje y desbloquea el potencial ilimitado de tu mente con nuestra suscripción de chat personalizado hoy mismo!</p>
+            <p class="msg-dash">¡Descubre un mundo de conocimiento personalizado con nuestra suscripción de chat exclusiva de la Universidad de Cladas! Con acceso directo a expertos en cada campo, obtendrás respuestas instantáneas a tus preguntas, tutorías personalizadas y una experiencia educativa única. ¡Invierte en tu aprendizaje y desbloquea el potencial ilimitado de tu mente con nuestra suscripción de chat personalizado hoy mismo!
+                    <br>  <br>
+                <div id="btn-chat">
+                </div>    
+                
+            </p>
+        
+            
         </div>
 
         <div id="btn-pago">
@@ -37,10 +42,9 @@
     </div>
    </div>
    <script>
-      // Listar los pagos
-      $(document).ready(function() {
+    // Listar los pagos
+    $(document).ready(function() {
         indexPagos();
-
      });
         function indexPagos() {
                 $.ajax({
@@ -58,6 +62,9 @@
                                 var fechaVencimiento = new Date(pago.expiration_date);
                                 if (fechaVencimiento > fechaActual) {
                                     $("#btn-pago").html('<p>Ya tiene un pago activo</p>');
+                                    $("#btn-chat").html('<a href="/chat" class="btn-paypal"> <i class="fa-regular fa-comments"></i> Chat </a> ');
+
+
                                     // Si la fecha de vencimiento es mayor que la fecha actual, muestra algo
                                     $("#result-pagos").append(
                                         '<div class="pagos-body"> ' +

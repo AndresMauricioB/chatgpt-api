@@ -16,17 +16,6 @@
                     <x-nav-link href="{{ route('dashboard') }}" :active="request()->routeIs('dashboard')">
                         {{ __('Administración') }}
                     </x-nav-link>
-
-                    @if (Auth::user()->rol == 2)
-                    <x-nav-link href="{{ route('chat') }}" :active="request()->routeIs('chat')">
-                        {{ __('Chat') }}
-                       
-                    </x-nav-link>
-                    @endif
-                  
-                    
-                    
-                    
                 </div>
             </div>
 
